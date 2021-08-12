@@ -10,7 +10,7 @@ website = "http://api.openweathermap.org/"
 
 webByCityState1 = 'http://api.openweathermap.org/data/2.5/weather?q='
 #enter city and state separated by comma between two strings city name,state code
-webByCityState2 = '&units=imperial&appid=f8647affb7675ef8cd050e699a5d22e8'
+webByCityState2 = ',us&units=imperial&appid=f8647affb7675ef8cd050e699a5d22e8'
 
 webByZip1 = "http://api.openweathermap.org/data/2.5/weather?zip="
 #enter zip code between two strings zip code
@@ -22,7 +22,21 @@ def getWeather(webString1, webString2, userLocation):
   print('Connecting to server...')
   response1 = requests.get(webString1 + userLocation + webString2)
   rawWeather = response1.json()
-  print(rawWeather)
+  return rawWeather
+
+def displayWeather(rawWeather):
+  currentTemperature = rawWeather['main']['temp']
+  highTemp = rawWeather['main']['temp_min']
+  lowTemp = rawWeather['main']['temp_max']
+  feelsLike = rawWeather['main']['feels_like']
+  print("Currently, it is " + str(currentTemperature) + " degrees.")
+  print("It feels like " + str(feelsLike) + " degrees.")
+  print("Low: " + str(lowTemp))
+  print("High: " + str(highTemp))
+
+def main():
+  pass
+
 
 
 '''
@@ -70,8 +84,9 @@ while looping == True:
 
 #Prompt to Refresh, quit program or try a new location
 
+city = input("What city are you from?: ")
+state = input("What state are you from?: ")
+location = (city + "," + state)
+rawWeather = getWeather(webByCityState1, webByCityState2, location)
 
-zip = input("What is your 5 digit zip code?: ")
-print(str(zip))
-getWeather(webByZip1, webByZip2, zip)
-
+displayWeather(rawWeather)
