@@ -23,9 +23,11 @@ def getWeather(webString1, webString2, userLocation):
   try:
     response1 = requests.get(webString1 + userLocation + webString2)
     rawWeather = response1.json()
+    print("Connection successful.")
     return rawWeather
   except:
     print("Something went wrong.")
+    print("Connection unsuccessful.")
 
 #Display weather info
 def displayWeather(rawWeather):
@@ -42,29 +44,27 @@ def displayWeather(rawWeather):
     print("Something went wrong.")
 
 def main():
-  pass
-
-
-'''
 #Prompt for zip code or city. If City prompt for state
-looping = True
-while looping == True:
-  choice = input("Press 1 to use zip code or press 2 to choose city: ")
-  if choice == '1':
-   zip = input("What is your 5 digit zip code?: ")
-  elif choice == '2':
-    city = input("What city are you from?: ")
-    state = input("What state are you from?: ")
-  else:
-    print('Please enter 1 or 2')
-'''
+  looping = True
+  while looping == True:
+    choice = input("Press 1 to use zip code, press 2 to choose city, or 3 to exit: ")
+    if choice == '1':
+      zip = input("What is your 5 digit zip code?: ")
+      rawWeather = getWeather(webByZip1, webByZip2, zip)
+      displayWeather(rawWeather)
+    elif choice == '2':
+      city = input("What city are you from?: ")
+      state = input("What state are you from?: ")
+      location = (city + "," + state)
+      rawWeather = getWeather(webByCityState1, webByCityState2, location)
+      displayWeather(rawWeather)
+    elif choice == '3':
+      exit(0)
+    else:
+      print('Please enter 1 or 2')
 
 
-#Prompt to Refresh, quit program or try a new location
 
-city = input("What city are you from?: ")
-state = input("What state are you from?: ")
-location = (city + "," + state)
-rawWeather = getWeather(webByCityState1, webByCityState2, location)
 
-displayWeather(rawWeather)
+#running code
+main()
