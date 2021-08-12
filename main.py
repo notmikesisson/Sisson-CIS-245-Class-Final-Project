@@ -20,21 +20,26 @@ webByZip2 = "&units=imperial&appid=f8647affb7675ef8cd050e699a5d22e8"
 #passes in strings for web address then grabs data from server
 def getWeather(webString1, webString2, userLocation):
   print('Connecting to server...')
-  response1 = requests.get(webString1 + userLocation + webString2)
-  rawWeather = response1.json()
-  return rawWeather
+  try:
+    response1 = requests.get(webString1 + userLocation + webString2)
+    rawWeather = response1.json()
+    return rawWeather
+  except:
+    print("Something went wrong.")
 
 #Display weather info
 def displayWeather(rawWeather):
-  currentTemperature = rawWeather['main']['temp']
-  highTemp = rawWeather['main']['temp_min']
-  lowTemp = rawWeather['main']['temp_max']
-  feelsLike = rawWeather['main']['feels_like']
-  print("Currently, it is " + str(currentTemperature) + " degrees.")
-  print("It feels like " + str(feelsLike) + " degrees.")
-  print("Low: " + str(lowTemp))
-  print("High: " + str(highTemp))
-
+  try:
+    currentTemperature = rawWeather['main']['temp']
+    highTemp = rawWeather['main']['temp_min']
+    lowTemp = rawWeather['main']['temp_max']
+    feelsLike = rawWeather['main']['feels_like']
+    print("Currently, it is " + str(currentTemperature) + " degrees.")
+    print("It feels like " + str(feelsLike) + " degrees.")
+    print("Low: " + str(lowTemp))
+    print("High: " + str(highTemp))
+  except:
+    print("Something went wrong.")
 
 def main():
   pass
