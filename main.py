@@ -24,6 +24,7 @@ def getWeather(webString1, webString2, userLocation):
   rawWeather = response1.json()
   return rawWeather
 
+#Display weather info
 def displayWeather(rawWeather):
   currentTemperature = rawWeather['main']['temp']
   highTemp = rawWeather['main']['temp_min']
@@ -34,26 +35,10 @@ def displayWeather(rawWeather):
   print("Low: " + str(lowTemp))
   print("High: " + str(highTemp))
 
+
 def main():
   pass
 
-
-
-'''
-response = requests.get("http://api.openweathermap.org/data/2.5/weather?q=Omaha,us&units=imperial&APPID=f8647affb7675ef8cd050e699a5d22e8")
-js = response.json()
-
-
-print(js)
-currentTemperature = js['main']['temp']
-highTemp = js['main']['temp_min']
-lowTemp = js['main']['temp_max']
-feelsLike = js['main']['feels_like']
-print(currentTemperature)
-print("It feels like " + str(feelsLike) + " degrees.")
-print("Low: " + str(lowTemp))
-print("High: " + str(highTemp))
-'''
 
 '''
 #Prompt for zip code or city. If City prompt for state
@@ -69,18 +54,6 @@ while looping == True:
     print('Please enter 1 or 2')
 '''
 
-
-#If unable to connect ask to retry.
-
-#Once connected, retrieve and store the weather info
-#highTemp =
-#lowTemp =
-#currentTemp =
-
-
-
-
-#Display weather info
 
 #Prompt to Refresh, quit program or try a new location
 
