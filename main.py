@@ -5,6 +5,13 @@
 api = "f8647affb7675ef8cd050e699a5d22e8"
 website = "http://api.openweathermap.org/"
 
+webByCityState1 = 'api.openweathermap.org/data/2.5/weather?q='
+#enter city and state in curly bracks, separated by comma {city name},{state code}
+webByCityState2 = '&appid=f8647affb7675ef8cd050e699a5d22e8'
+
+webByZip1 = "api.openweathermap.org/data/2.5/weather?zip=" 
+#enter zip code between two strings in curly brackets (zip code)
+webByZip2 = ",us&appid=f8647affb7675ef8cd050e699a5d22e8"
 #Display welcome message
 
 
